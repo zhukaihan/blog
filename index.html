@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+
+<head>
+	<script src="jquery-3.1.1.min.js"></script>
+	<script src="blog.js"></script>
+	<link rel="stylesheet" type="text/css" href="postContent.css">
+	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Antic" />
+	<style>
+		a {
+			color: red;
+			cursor: pointer;
+			text-decoration: none;
+		}
+		a:hover {
+			text-decoration: underline;
+		}
+		#header{
+			position: relative;
+			float: left;
+			left: 0px;
+			margin: 0;
+			padding: 0;
+			padding-top: 50px;
+			padding-left: 12.5%;
+			padding-right: 12.5%;
+			padding-bottom: 40px;
+			width: 75%;
+			height: auto;
+			min-height: 100px;
+			background-color: white;
+			border: 0;
+			border-bottom: 2px;
+			border-style: solid;
+		}
+		#headerContent {
+			position: relative;
+			float: left;
+			left: 0px;
+			margin: 0;
+			padding: 0;
+			width: 80%;
+			height: auto;
+		}
+		#navigation {
+			position: relative;
+			float: right;
+			right: 0px;
+			margin: 0;
+			padding: 0;
+			width: 20%;
+			height: auto;
+		}
+		#header h3{
+			position: relative;
+			float: left;
+			left: 0px;
+			margin: 0px;
+			padding: 20px 10%;
+			padding-left: 10%;
+			padding-right: 10%;
+			padding-top: 20px;
+			padding-bottom: 20px;
+			width: 80%;
+			height: auto;
+			font-size: 25px;
+			color: rgb(50, 50, 50);
+		}
+		#header p{
+			position: relative;
+			float: left;
+			left: 0px;
+			margin: 0px;
+			padding: 5px 10%;
+			padding-left: 10%;
+			padding-right: 10%;
+			padding-top: 5px;
+			padding-bottom: 5px;
+			width: 80%;
+			height: auto;
+			font-size: 15px;
+			color: rgb(100, 100, 100);
+		}
+		#body {
+			position: relative;
+			float: left;
+			left: 0px;
+			margin: 0px;
+			padding: 50px 0 5px 0;
+			padding-top: 50px;
+			padding-bottom: 50px;
+			padding-left: 12.5%;
+			padding-right: 12.5%;
+			width: 75%;
+			height: auto;
+			min-height: 100px;
+			font-family: Antic;
+		}
+		#content {
+			position: relative;
+			float: left;
+			left: 0px;
+			margin: 0px;
+			padding-left: 5%;
+			padding-right: 5%;
+			padding-top: 5px;
+			padding-bottom: 5px;
+			width: 60%;
+			height: auto;
+			min-height: 100px;
+		}
+		#otherInfos {
+			position: relative;
+			float: right;
+			right: 0px;
+			margin: 0;
+			padding-left: 0;
+			padding-right: 5%;
+			padding-top: 5px;
+			padding-bottom: 5px;
+			width: 25%;
+			height: auto;
+			min-height: 100px;
+		}
+		.postPreview {
+			position: relative;
+			float: left;
+			margin: 0;
+			padding: 0;
+			padding-top: 20px;
+			padding-bottom: 50px;
+			padding-left: 5%;
+			padding-right: 5%;
+			width: 90%;
+			height: auto;
+			min-height: 100px;
+		}
+		.postTitle {
+			position: relative;
+			float: left;
+			margin: 0;
+			padding: 0;
+			padding-bottom: 5px;
+			width: 100%;
+			color: rgb(70, 70, 70);
+			height: auto;
+			min-height: 5px;
+			text-decoration: underline;
+			font-size: 30px;
+		}
+		.postTimestamp {
+			position: relative;
+			float: left;
+			margin: 0;
+			padding 0;
+			padding-top: 5px;
+			padding-bottom: 5px;
+			width: 100%;
+			height: auto;
+			min-height: 5px;
+			color: rgb(100, 100, 100);
+			font-size: 12px;
+		}
+		.postExtract {
+			position: relative;
+			float: left;
+			margin: 0;
+			padding 0;
+			padding-top: 20px;
+			padding-bottom: 20px;
+			width: 100%;
+			height: auto;
+			min-height: 10px;
+			color: rgb(70, 70, 70);
+			font-size: 18px;
+		}
+		.postTag {
+			position: relative;
+			float: left;
+			margin: 0;
+			padding 0;
+			padding-top: 5px;
+			padding-bottom: 5px;
+			width: 100%;
+			height: auto;
+			min-height: 5px;
+			color: rgb(100, 100, 100);
+			font-size: 15px;
+		}
+		#footer {
+			position: relative;
+			float: left;
+			margin: 0;
+			padding: 0;
+			padding-top: 40px;
+			padding-bottom: 10px;
+			padding-left: 12.5%;
+			padding-right: 12.5%;
+			width: 75%;
+			height: 20px;
+			border: 0;
+			border-top: 2px;
+			border-style: solid;
+		}
+		#footer p {
+			position: relative;
+			float: left;
+			margin: 0;
+			padding: 0;
+			width: 100%;
+			height: 100%;
+			text-align: center;
+			font-size: 12px;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="header">
+		<div id="headerContent">
+			<h3>Peter Zhu</h3>
+			<p>My blog, or sth I think necessary to share.</p>
+		</div>
+		<div id="navigation">
+			<p><a href="http://zhukaihan.com">About Me</a></p>
+			<p><a onclick="showAllPostPreviews(); scrollToBody()">Blog</a></p>
+		</div>
+	</div>
+
+	<div id="body">
+		<div id="content">
+			<!--anything inside the #content div in html file will not be displayed because #content will be adjusted according to files with js. This div is just an example-->
+			<div class="postPreview" id="2016-12-03_First-Post">
+				<h1 class="postTitle">First Post</h1>
+				<p class="postTimestamp">2016-12-03</p>
+				<p class="postExtract">This is a test blog post that is going to be or has already be used to test this blog. This is a blog that is dynamic and its content is highly denpended on the files presented, which acts as a database. Since this blog site is going to be using GitHub as a host, every operation of editing the html will be in javascript, instead of PHP, due to the incapability of using PHP when hosting with GitHub. <a onclick="showPost('2016-12-03_First-Post')">Read more...</a></p>
+				<p class="postTag">Tags: web</p>
+			</div>
+		</div>
+		
+		<div id="otherInfos">
+			Follow me on nothing.
+			AAAA
+		</div>
+	</div>
+
+	<div id="footer">
+		<p>Copyright &copy; 2016, Kaihan Zhu. <a href="http://github.com/zhukaihan">Github</a></p>
+	</div>
+</body>
+

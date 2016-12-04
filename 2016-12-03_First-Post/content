@@ -1,0 +1,7 @@
+        This is a test blog post that is going to be or has already be used to test this blog. This is a blog that is dynamic and its content is highly denpended on the files presented, which acts as a database. Since this blog site is going to be using GitHub as a host, every operation of editing the html will be in javascript, instead of PHP, due to the incapability of using PHP when hosting with GitHub. 
+        This is 8 leading non-breaking spaces. 
+This is a return. 
+This is a "". 
+This is a <>.
+This is a &.
+	This is a tab represented in 8 non-breaking spaces.

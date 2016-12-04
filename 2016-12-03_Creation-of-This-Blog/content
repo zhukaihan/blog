@@ -1,0 +1,29 @@
+        This is blog site that is hand written by me. 
+<h1>Background</h1>
+        First of all, I registered zhukaihan.com on namecheap. As an international student, I live in a host family, where their router is out of my control; thus, I cannot setup an server. I wish to have a blog that I have fully control over -- including html, css, etc -- and free, that is, idealy, PHP plus database, not Google's Blogger. Since I cannot setup an server, I turned my attention to hosting on Github. Why not Javascript plus a hierarchy of files. 
+        I have this idea in mind for couple months, until today, December 3, 2016, I decided to start after doing laundry promptly. 
+        
+<h1>Basics</h1>
+        Simple HTML plus CSS. 
+        JS change few content of HTML. 
+        A json file stores formatted names of posts. 
+        Each post have a folder. 
+        Since this is a small scale blog and I will not post posts like crazy, the formatted names of posts is: date_title. Just escape spaces with dashes,-. 
+        Each post folder have a "content" -- only stores the article -- and a "info.json" -- stores title, date, extract of the post, and tags. 
+        I didn't even bother seperating css from html. 
+<h1>Points worth noticing</h1>
+<h3>Selectors</h3>
+        class starts with .
+        id starts with #
+        Doublecheck these while using jQuery. 
+        Nothing is more painful when you finally found out that it should be a dot. 
+<h3>Fonts</h3>
+	googleapis.com have plenty fonts to borrow. 
+	for example the css for Antic font: <code>fonts.googleapis.com/css?family=Antic</code>
+<h3>Vim</h3>
+	Vim is so good. 
+	Use it and adapt to it. 
+	Multimonitor will help a lot. 
+<h3>Mobile Version</h3>
+	I just moved the div on the right to bottom. I looks pretty good on phones. 
+
