@@ -1,0 +1,5 @@
+<h2>Starting, Resources</h2>
+        Follow Caffe and TensorFlow's tutorials will give a very good understanding of how to use the library. Tweek with parameters to see what will happen.
+        To learn Convolution, I found a blog from Tim Dettmers to be very useful (http://timdettmers.com). Especially his post "Understanding Convolution in Deep Learning". Read over a couple times, not just one time. It has very well formed sentences to tackle with, also made understanding convolution simple.
+        Of course, CS231n Convolutional Neural Networks for Visual Recognition at Stanford is very useful (http://cs231n.github.io). It explains different layers very well.
+        Also,  CS224d Deep Learning for Natural Language Processing is a good place to start deep learning (http://cs224d.stanford.edu).

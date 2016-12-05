@@ -1,4 +1,6 @@
-{ "posts" : [ 
+{ "posts" : [
+    "2016-12-04_Deep-Learning-Beginning-Resources",
+    "2016-12-04_Starting-Tensorflow-or-Caffe",
 	"2016-12-03_Creation-of-This-Blog",
 	"2016-12-03_First-Post"
 ]}

@@ -1,0 +1,26 @@
+<h2>Briefly explaining</h2>
+        There are lots of Deep Learning libraries out there. I chose Caffe and TensorFlow as the libraries for my learning process, especially Caffe for heating up the room in winter.
+        Caffe is a popular Deep Learning framework that is developed by BVLC (Berkeley Vision Learning Center) (I think they are changing the name). It is super fast. The code is very optimized to reach highest speed. Also, it focuses its most attention on computer vision. A branch of caffe supports multi-gpu, not master.
+        TensorFlow is developed by Google. It is not as fast as Caffe, but decent. It can be used in computer vision, natural language processing, etc. It provides support for multi-gpu, but need to construct model differently.
+
+<h2>Installing Troubles or Points</h2>
+<h3>Caffe</h3>
+        Caffe supports Linux, MacOS, and Windows, etc. Installing on macs uses Brew, on windows I don't know.
+        Basiclly Follow the official installation process.
+<h4>HDF5 not found</h4>
+        Create symolics between libhdf5_serial.so.8.0.2 and libhdf5.so under /usr/lib/x86_64-linux-gpu, do the same for hl's.
+        The issue is that the hdf5 libraries on debian have "serial" postfixes where what the caffe's referencing does not.
+        Source: https://github.com/NVIDIA/DIGITS/issues/156
+<h4>CUDA</h4>
+        Goes the same for TensorFlow. Install CUDA then cuDNN.
+        If using .run file for install, when terminating X-Server, or lightDM, key for pure command line is Ctrl+Alt+F1 or F2 or F3... F7 is for going back to gui.
+<h3>TensorFlow</h3>
+        TensorFlow is nice. I found it easier to understand or to learn deep learning. It has plenty nice step-by-step tutorials. You should have no problem when install ing TensorFlow.
+<h4>TensorFlow on Windows</h4>
+        Don't use Windows.
+        If you want GPU support, don't bother with docker, pip, etc. Build from source.
+        Follow this one. https://github.com/tensorflow/tensorflow/blob/master/tensorflow/contrib/cmake/README.md
+        This build will have support for GPU. It uses cmake and MSBuild. It is community build. However, there are hold backs with it, detailed in the readme.
+        Use MSBuild x64 under ProgramFiles/MSBuild, not under Windows.
+        Set CMAKE_C_FLAGS_RELEASE and CMAKE_CXX_FLAGS_RELEASE to "/MD" if you encounter runtime library matching problems. This is not well documented.
+        Or, you can use the Bazel Windows experimantal version.

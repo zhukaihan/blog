@@ -1,4 +1,5 @@
 var tags = {};
+var xhttp = new XMLHttpRequest();
 
 function scrollToBody() {
 	console.log("scrolling to body");
@@ -9,8 +10,12 @@ function scrollToBody() {
 
 $(document).ready(function(){
 	$(window).resize();
-
-	showAllPostPreviews();
+                  
+    showAllPostPreviews();
+    var hash = window.location.hash;
+    if (hash) {
+        showPost(hash.substring(1, hash.length))
+    }
 });
 
 $(window).resize(function(){
@@ -23,51 +28,65 @@ $(window).resize(function(){
 	}
 });
 
+function showPostsPreviews(posts) {
+    if (posts != null) {
+        var html = "";
+        for (i in posts) {
+            xhttp.open("GET", posts[i] + "/info.json", false);
+            xhttp.send();
+            var info = JSON.parse(xhttp.responseText);
+            if (info == null) {
+                continue;
+            }
+            
+            html += "<div class=\"postPreview\" id=\"";
+            html += posts[i];
+            html += "\"><h1 class=\"postTitle\">";
+            html += info.title;
+            html += "</h1><p class=\"postTimestamp\">";
+            html += info.timestamp;
+            html += "</p><p class=\"postExtract\">";
+            html += info.extract;
+            html += "<a onclick=\"showPost('";
+            html += posts[i];
+            html += "')\"> Read more...</a></p><p class=\"postTag\">Tags: ";
+            for (j in info.tags) {
+                html += "<a onclick=\"showTagPostsPreviews('";
+                html += info.tags[j]
+                html += "'); scrollToBody()\">";
+                html += info.tags[j] + "</a>, ";
+                
+                // add tags to tags
+                if (tags[info.tags[j]] == null) {
+                    tags[info.tags[j]] = [posts[i]];
+                } else {
+                    if ($.inArray(posts[i], tags[info.tags[j]]) == -1) {
+                        tags[info.tags[j]].push(posts[i]);
+                    }
+                }
+            }
+            html = html.substring(0, html.length - 2);
+            html += "</p></div>";
+        }
+        
+        if (html != "") {
+            $("#content").html(html);
+        }
+    } else {
+        // no posts
+    }
+}
+
 function showAllPostPreviews() {
-	var xhttp = new XMLHttpRequest();
-	xhttp.open("GET", "postSum.json", false);
-	xhttp.send();
+    xhttp.open("GET", "postSum.json", false);
+    xhttp.send();
+    
+    var posts = JSON.parse(xhttp.responseText).posts;
+    showPostsPreviews(posts);
+}
 
-	var posts = JSON.parse(xhttp.responseText).posts;
-	if (posts != null) {
-		var html = "";
-		for (i in posts) {
-			xhttp.open("GET", posts[i] + "/info.json", false);
-			xhttp.send();
-			var info = JSON.parse(xhttp.responseText);
-			
-			if (info != null) {
-				html += "<div class=\"postPreview\" id=\"";
-				html += posts[i];
-				html += "\"><h1 class=\"postTitle\">";
-				html += info.title;
-				html += "</h1><p class=\"postTimestamp\">";
-				html += info.timestamp;
-				html += "</p><p class=\"postExtract\">";
-				html += info.extract;
-				html += "<a onclick=\"showPost('";
-				html += posts[i];
-				html += "')\"> Read more...</a></p><p class=\"postTag\">Tags: ";
-				for (j in info.tags) {
-					html += info.tags[j] + ", ";
-					
-					if (tags[info.tags[j]] == null) {
-						tags[info.tags[j]] = [posts[i]];
-					} else {
-						if ($.inArray(posts[i], tags[info.tags[j]]) == -1) {
-							tags[info.tags[j]].push(posts[i]);
-						}
-					}
-				}
-				html = html.substring(0, html.length - 2);
-				html += "</p></div>";
-			}
-		}
-
-		if (html != "") {
-			$("#content").html(html);
-		}
-	}
+function showTagPostsPreviews(tagName) {
+    showPostsPreviews(tags[tagName]);
 }
 
 function showPost(name) {
@@ -76,7 +95,6 @@ function showPost(name) {
 	$("#content").html(html);
 	$("#" + name + ">.postTitle").css("font-size", "40px");
 
-	var xhttp = new XMLHttpRequest();
 	xhttp.open("GET", name + "/content", false);
 	xhttp.send();
 	if (xhttp.responseText != null) {
@@ -92,6 +110,8 @@ function showPost(name) {
 
 		$("#content>#" + name + ">.postExtract").html("<article class='postContent'>"+ escapedContent + "</article>");
 		console.log(escapedContent);
-	}
+    } else {
+        $("#content>#" + name + ">.postExtract").html("<p>No Such Article.</p>");
+    }
 	scrollToBody();
 }
