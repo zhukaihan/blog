@@ -29,6 +29,7 @@ $(window).resize(function(){
 });
 
 function showPostsPreviews(posts) {
+	$("#shareLink").html("");
     if (posts != null) {
         var html = "";
         for (i in posts) {
@@ -110,7 +111,7 @@ function showPost(name) {
 							;
 
 		$("#content>#" + name + ">.postExtract").html("<article class='postContent'>"+ escapedContent + "</article>");
-		console.log(escapedContent);
+		$("#shareLink").html("http://blog.zhukaihan.com/index.html#" + name);
     } else {
         $("#content>#" + name + ">.postExtract").html("<p>No Such Article.</p>");
     }
