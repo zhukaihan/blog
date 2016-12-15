@@ -86,7 +86,8 @@ function showAllPostPreviews() {
 }
 
 function showTagPostsPreviews(tagName) {
-    showPostsPreviews(tags[tagName]);
+	showPostsPreviews(tags[tagName]);
+	$("#content").html("<h1>Tag: " + tagName + "</h1>" + $("#content").html());
 }
 
 function showPost(name) {
@@ -104,7 +105,7 @@ function showPost(name) {
 							.replace(/\t/g, "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;")
 							//.replace(/</g, "&lt;")
 							//.replace(/>/g, "&gt;")
-							.replace(/"/g, "&quot;")
+							//.replace(/"/g, "&quot;")
 							.replace(/'/g, "&apos;")
 							;
 
