@@ -12,7 +12,7 @@ $(document).ready(function(){
 	$(window).resize();
                   
     showAllPostPreviews();
-    var hash = window.location.hash;
+    var hash = decodeURI(window.location.hash);
     if (hash) {
         showPost(hash.substring(1, hash.length))
     }
