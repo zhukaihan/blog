@@ -34,7 +34,7 @@ function showPostsPreviews(posts) {
 		$("#content").html("");
         for (i in posts) {
 			var xhttp = new XMLHttpRequest();
-			xhttp["postId"] = post[i];
+			xhttp["postId"] = posts[i];
 			xhttp.onreadystatechange = function() {
 			    if (this.readyState == 4 && this.status == 200) {
 					var info = JSON.parse(this.responseText);
