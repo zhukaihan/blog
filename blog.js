@@ -13,7 +13,7 @@ $(document).ready(function(){
     showAllPostPreviews();
     var hash = decodeURI(window.location.hash);
     if (hash) {
-        showPost(hash.substring(1, hash.length))
+        showPost(hash.substring(1, hash.length));
     }
 });
 
@@ -34,6 +34,7 @@ function showPostsPreviews(posts) {
 		$("#content").html("");
         for (i in posts) {
 			var xhttp = new XMLHttpRequest();
+			xhttp["postId"] = i;
 			xhttp.onreadystatechange = function() {
 			    if (this.readyState == 4 && this.status == 200) {
 					var info = JSON.parse(this.responseText);
@@ -43,7 +44,7 @@ function showPostsPreviews(posts) {
 
 					var html = "";
 		            html += "<div class=\"postPreview\" id=\"";
-		            html += posts[i];
+		            html += this[postId];
 		            html += "\"><h1 class=\"postTitle\">";
 		            html += info.title;
 		            html += "</h1><p class=\"postTimestamp\">";
@@ -51,7 +52,7 @@ function showPostsPreviews(posts) {
 		            html += "</p><p class=\"postExtract\">";
 		            html += info.extract;
 		            html += "<a onclick=\"showPost('";
-		            html += posts[i];
+		            html += this[postId];
 		            html += "')\"> Read more...</a></p><p class=\"postTag\">Tags: ";
 		            for (j in info.tags) {
 		                html += "<a onclick=\"showTagPostsPreviews('";
@@ -61,10 +62,10 @@ function showPostsPreviews(posts) {
 
 		                // add tags to tags
 		                if (tags[info.tags[j]] == null) {
-		                    tags[info.tags[j]] = [posts[i]];
+		                    tags[info.tags[j]] = [this[postId]];
 		                } else {
 		                    if ($.inArray(posts[i], tags[info.tags[j]]) == -1) {
-		                        tags[info.tags[j]].push(posts[i]);
+		                        tags[info.tags[j]].push(this[postId]);
 		                    }
 		                }
 		            }
