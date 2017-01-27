@@ -1,5 +1,4 @@
 var tags = {};
-var xhttp = new XMLHttpRequest();
 
 function scrollToBody() {
 	console.log("scrolling to body");
@@ -33,6 +32,7 @@ function showPostsPreviews(posts) {
     if (posts != null) {
         var html = "";
         for (i in posts) {
+			var xhttp = new XMLHttpRequest();
 			xhttp.onreadystatechange = function() {
 			    if (this.readyState == 4 && this.status == 200) {
 					var info = JSON.parse(xhttp.responseText);
@@ -83,6 +83,7 @@ function showPostsPreviews(posts) {
 }
 
 function showAllPostPreviews() {
+	var xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function() {
 	    if (this.readyState == 4 && this.status == 200) {
 			var posts = JSON.parse(xhttp.responseText).posts;
@@ -105,6 +106,7 @@ function showPost(name) {
 	$("#content").html(html);
 	$("#" + name + ">.postTitle").css("font-size", "40px");
 
+	var xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function() {
 	    if (this.readyState == 4 && this.status == 200) {
 			if (xhttp.responseText != null) {
