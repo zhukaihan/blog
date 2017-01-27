@@ -64,13 +64,14 @@ function showPostsPreviews(posts) {
 		                html += info.tags[j] + "</a>, ";
 
 		                // add tags to tags
-		                if (tags[info.tags[j]] == null) {
+						if ($.inArray(this["postId"], tags[info.tags[j]]) == -1) {
+							tags[info.tags[j]].push(this["postId"]);
+						}
+		                /*if (tags[info.tags[j]] == null) {
 		                    tags[info.tags[j]] = [this["postId"]];
 		                } else {
-		                    if ($.inArray(posts[i], tags[info.tags[j]]) == -1) {
-		                        tags[info.tags[j]].push(this["postId"]);
-		                    }
-		                }
+
+		                }*/
 		            }
 		            html = html.substring(0, html.length - 2);
 		            html += "</p>";
