@@ -10,7 +10,7 @@ function scrollToBody() {
 
 $(document).ready(function(){
 	$(window).resize();
-                  
+
     showAllPostPreviews();
     var hash = decodeURI(window.location.hash);
     if (hash) {
@@ -33,43 +33,47 @@ function showPostsPreviews(posts) {
     if (posts != null) {
         var html = "";
         for (i in posts) {
-            xhttp.open("GET", posts[i] + "/info.json", false);
+			xhttp.onreadystatechange = function() {
+			    if (this.readyState == 4 && this.status == 200) {
+					var info = JSON.parse(xhttp.responseText);
+		            if (info == null) {
+		                return;
+		            }
+
+		            html += "<div class=\"postPreview\" id=\"";
+		            html += posts[i];
+		            html += "\"><h1 class=\"postTitle\">";
+		            html += info.title;
+		            html += "</h1><p class=\"postTimestamp\">";
+		            html += info.timestamp;
+		            html += "</p><p class=\"postExtract\">";
+		            html += info.extract;
+		            html += "<a onclick=\"showPost('";
+		            html += posts[i];
+		            html += "')\"> Read more...</a></p><p class=\"postTag\">Tags: ";
+		            for (j in info.tags) {
+		                html += "<a onclick=\"showTagPostsPreviews('";
+		                html += info.tags[j]
+		                html += "'); scrollToBody()\">";
+		                html += info.tags[j] + "</a>, ";
+
+		                // add tags to tags
+		                if (tags[info.tags[j]] == null) {
+		                    tags[info.tags[j]] = [posts[i]];
+		                } else {
+		                    if ($.inArray(posts[i], tags[info.tags[j]]) == -1) {
+		                        tags[info.tags[j]].push(posts[i]);
+		                    }
+		                }
+		            }
+		            html = html.substring(0, html.length - 2);
+		            html += "</p></div>";
+			    }
+			};
+            xhttp.open("GET", posts[i] + "/info.json", true);
             xhttp.send();
-            var info = JSON.parse(xhttp.responseText);
-            if (info == null) {
-                continue;
-            }
-            
-            html += "<div class=\"postPreview\" id=\"";
-            html += posts[i];
-            html += "\"><h1 class=\"postTitle\">";
-            html += info.title;
-            html += "</h1><p class=\"postTimestamp\">";
-            html += info.timestamp;
-            html += "</p><p class=\"postExtract\">";
-            html += info.extract;
-            html += "<a onclick=\"showPost('";
-            html += posts[i];
-            html += "')\"> Read more...</a></p><p class=\"postTag\">Tags: ";
-            for (j in info.tags) {
-                html += "<a onclick=\"showTagPostsPreviews('";
-                html += info.tags[j]
-                html += "'); scrollToBody()\">";
-                html += info.tags[j] + "</a>, ";
-                
-                // add tags to tags
-                if (tags[info.tags[j]] == null) {
-                    tags[info.tags[j]] = [posts[i]];
-                } else {
-                    if ($.inArray(posts[i], tags[info.tags[j]]) == -1) {
-                        tags[info.tags[j]].push(posts[i]);
-                    }
-                }
-            }
-            html = html.substring(0, html.length - 2);
-            html += "</p></div>";
         }
-        
+
         if (html != "") {
             $("#content").html(html);
         }
@@ -79,11 +83,15 @@ function showPostsPreviews(posts) {
 }
 
 function showAllPostPreviews() {
-    xhttp.open("GET", "postSum.json", false);
+	xhttp.onreadystatechange = function() {
+	    if (this.readyState == 4 && this.status == 200) {
+			var posts = JSON.parse(xhttp.responseText).posts;
+			showPostsPreviews(posts);
+		}
+	};
+    xhttp.open("GET", "postSum.json", true);
     xhttp.send();
-    
-    var posts = JSON.parse(xhttp.responseText).posts;
-    showPostsPreviews(posts);
+
 }
 
 function showTagPostsPreviews(tagName) {
