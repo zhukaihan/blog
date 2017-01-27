@@ -44,7 +44,7 @@ function showPostsPreviews(posts) {
 
 					var html = "";
 		            html += "<div class=\"postPreview\" id=\"";
-		            html += this[postId];
+		            html += this["postId"];
 		            html += "\"><h1 class=\"postTitle\">";
 		            html += info.title;
 		            html += "</h1><p class=\"postTimestamp\">";
@@ -52,7 +52,7 @@ function showPostsPreviews(posts) {
 		            html += "</p><p class=\"postExtract\">";
 		            html += info.extract;
 		            html += "<a onclick=\"showPost('";
-		            html += this[postId];
+		            html += this["postId"];
 		            html += "')\"> Read more...</a></p><p class=\"postTag\">Tags: ";
 		            for (j in info.tags) {
 		                html += "<a onclick=\"showTagPostsPreviews('";
@@ -62,10 +62,10 @@ function showPostsPreviews(posts) {
 
 		                // add tags to tags
 		                if (tags[info.tags[j]] == null) {
-		                    tags[info.tags[j]] = [this[postId]];
+		                    tags[info.tags[j]] = [this["postId"]];
 		                } else {
 		                    if ($.inArray(posts[i], tags[info.tags[j]]) == -1) {
-		                        tags[info.tags[j]].push(this[postId]);
+		                        tags[info.tags[j]].push(this["postId"]);
 		                    }
 		                }
 		            }
