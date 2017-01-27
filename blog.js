@@ -35,7 +35,7 @@ function showPostsPreviews(posts) {
 			var xhttp = new XMLHttpRequest();
 			xhttp.onreadystatechange = function() {
 			    if (this.readyState == 4 && this.status == 200) {
-					var info = JSON.parse(xhttp.responseText);
+					var info = JSON.parse(this.responseText);
 		            if (info == null) {
 		                return;
 		            }
@@ -86,7 +86,7 @@ function showAllPostPreviews() {
 	var xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function() {
 	    if (this.readyState == 4 && this.status == 200) {
-			var posts = JSON.parse(xhttp.responseText).posts;
+			var posts = JSON.parse(this.responseText).posts;
 			showPostsPreviews(posts);
 		}
 	};
@@ -109,8 +109,8 @@ function showPost(name) {
 	var xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function() {
 	    if (this.readyState == 4 && this.status == 200) {
-			if (xhttp.responseText != null) {
-				var escapedContent = xhttp.responseText.replace(/&/g, "&amp;")
+			if (this.responseText != null) {
+				var escapedContent = this.responseText.replace(/&/g, "&amp;")
 									.replace(/\n/g, "<br>")
 									.replace(/        /g, "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;")
 									.replace(/\t/g, "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;")
