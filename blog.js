@@ -105,23 +105,28 @@ function showPost(name) {
 	$("#content").html(html);
 	$("#" + name + ">.postTitle").css("font-size", "40px");
 
-	xhttp.open("GET", name + "/content", false);
-	xhttp.send();
-	if (xhttp.responseText != null) {
-		var escapedContent = xhttp.responseText.replace(/&/g, "&amp;")
-							.replace(/\n/g, "<br>")
-							.replace(/        /g, "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;")
-							.replace(/\t/g, "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;")
-							//.replace(/</g, "&lt;")
-							//.replace(/>/g, "&gt;")
-							//.replace(/"/g, "&quot;")
-							.replace(/'/g, "&apos;")
-							;
+	xhttp.onreadystatechange = function() {
+	    if (this.readyState == 4 && this.status == 200) {
+			if (xhttp.responseText != null) {
+				var escapedContent = xhttp.responseText.replace(/&/g, "&amp;")
+									.replace(/\n/g, "<br>")
+									.replace(/        /g, "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;")
+									.replace(/\t/g, "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;")
+									//.replace(/</g, "&lt;")
+									//.replace(/>/g, "&gt;")
+									//.replace(/"/g, "&quot;")
+									.replace(/'/g, "&apos;")
+									;
 
-		$("#content>#" + name + ">.postExtract").html("<article class='postContent'>"+ escapedContent + "</article>");
-		$("#shareLink").html("http://blog.zhukaihan.com/index.html#" + name);
-    } else {
-        $("#content>#" + name + ">.postExtract").html("<p>No Such Article.</p>");
-    }
+				$("#content>#" + name + ">.postExtract").html("<article class='postContent'>"+ escapedContent + "</article>");
+				$("#shareLink").html("http://blog.zhukaihan.com/index.html#" + name);
+		    } else {
+		        $("#content>#" + name + ">.postExtract").html("<p>No Such Article.</p>");
+		    }
+		}
+	};
+	xhttp.open("GET", name + "/content", true);
+	xhttp.send();
+
 	scrollToBody();
 }
