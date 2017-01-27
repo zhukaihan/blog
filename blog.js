@@ -33,6 +33,11 @@ function showPostsPreviews(posts) {
 		// posts found
 		$("#content").html("");
         for (i in posts) {
+			var html = "";
+			html += "<div class=\"postPreview\" id=\"";
+			html += posts[i];
+			html += "\"></div>"
+			$("#content").append(html);
 			var xhttp = new XMLHttpRequest();
 			xhttp["postId"] = posts[i];
 			xhttp.onreadystatechange = function() {
@@ -43,9 +48,7 @@ function showPostsPreviews(posts) {
 		            }
 
 					var html = "";
-		            html += "<div class=\"postPreview\" id=\"";
-		            html += this["postId"];
-		            html += "\"><h1 class=\"postTitle\">";
+		            html += "<h1 class=\"postTitle\">";
 		            html += info.title;
 		            html += "</h1><p class=\"postTimestamp\">";
 		            html += info.timestamp;
@@ -70,12 +73,13 @@ function showPostsPreviews(posts) {
 		                }
 		            }
 		            html = html.substring(0, html.length - 2);
-		            html += "</p></div>";
+		            html += "</p>";
 
-			        $("#content").append(html);
+			        $("#" + this["postId"]).html(html);
 			    }
 			};
             xhttp.open("GET", posts[i] + "/info.json", true);
+			xhttp.timeout = 2000;
             xhttp.send();
         }
     } else {
@@ -93,13 +97,13 @@ function showAllPostPreviews() {
 		}
 	};
     xhttp.open("GET", "postSum.json", true);
+	xhttp.timeout = 2000;
     xhttp.send();
-
 }
 
 function showTagPostsPreviews(tagName) {
 	showPostsPreviews(tags[tagName]);
-	$("#content").html("<h1>Tag: " + tagName + "</h1>" + $("#content").html());
+	$("#content").prepend("<h1>Tag: " + tagName + "</h1>");
 }
 
 function showPost(name) {
@@ -123,13 +127,14 @@ function showPost(name) {
 									;
 
 				$("#content>#" + name + ">.postExtract").html("<article class='postContent'>"+ escapedContent + "</article>");
-				$("#shareLink").html("http://blog.zhukaihan.com/index.html#" + name);
+				//$("#shareLink").html("Link to this page (URL does not work): <br>http://blog.zhukaihan.com/index.html#" + name + "<br>");
 		    } else {
 		        $("#content>#" + name + ">.postExtract").html("<p>No Such Article.</p>");
 		    }
 		}
 	};
 	xhttp.open("GET", name + "/content", true);
+	xhttp.timeout = 2000;
 	xhttp.send();
 
 	scrollToBody();
