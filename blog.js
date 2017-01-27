@@ -30,7 +30,8 @@ $(window).resize(function(){
 function showPostsPreviews(posts) {
 	$("#shareLink").html("");
     if (posts != null) {
-        var html = "";
+		// posts found
+		$("#content").html("");
         for (i in posts) {
 			var xhttp = new XMLHttpRequest();
 			xhttp.onreadystatechange = function() {
@@ -40,6 +41,7 @@ function showPostsPreviews(posts) {
 		                return;
 		            }
 
+					var html = "";
 		            html += "<div class=\"postPreview\" id=\"";
 		            html += posts[i];
 		            html += "\"><h1 class=\"postTitle\">";
@@ -68,17 +70,16 @@ function showPostsPreviews(posts) {
 		            }
 		            html = html.substring(0, html.length - 2);
 		            html += "</p></div>";
+
+			        $("#content").append(html);
 			    }
 			};
             xhttp.open("GET", posts[i] + "/info.json", true);
             xhttp.send();
         }
-
-        if (html != "") {
-            $("#content").html(html);
-        }
     } else {
         // no posts
+		$("#content").html("No Posts. ");
     }
 }
 
