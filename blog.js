@@ -126,7 +126,7 @@ function showPost(name) {
 									.replace(/'/g, "&apos;")
 									;
 
-				$("#content>#" + name + ">.postExtract").html("<article class='postContent'>"+ escapedContent + "</article>");
+				$("#content>#" + name + ">.postExtract").html("<article class='postContent'>"+ marked(escapedContent) + "</article>");
 				//$("#shareLink").html("Link to this page (URL does not work): <br>http://blog.zhukaihan.com/index.html#" + name + "<br>");
 		    } else {
 		        $("#content>#" + name + ">.postExtract").html("<p>No Such Article.</p>");

@@ -1,22 +1,22 @@
 <h2>GPU and CPU</h2>
-	Here is a <a href="http://www.nvidia.com/object/what-is-gpu-computing.html">link</a> to NVIDIA's explanation and make sure to watch that interesting video. 
-	
+	Here is a <a href="http://www.nvidia.com/object/what-is-gpu-computing.html">link</a> to NVIDIA's explanation and make sure to watch that interesting video.
+
 <h3>Basics</h3>
-	CPU stands for Central Processing Unit - processes instructions and arithmetic calculations - and GPU stands for Graphics Processing Unit - processes graphics. CPU is used in every single computer as well as a GPU. 
+	CPU stands for Central Processing Unit - processes instructions and arithmetic calculations - and GPU stands for Graphics Processing Unit - processes graphics. CPU is used in every single computer as well as a GPU.
 
 <h3>CPU</h3>
 	"A series of discrete actions performed sequentially, one after the other." (from the video)
-	They usually contains a few cores, maybe two, sometimes 3, four, eight, sixteen, or thousands like supercomputers. They are fast in terms of clock rate. They are able to do instructions all over the places, like memory, arithetic, logic, control flow operations. 
-	
+	They usually contains a few cores, maybe two, sometimes 3, four, eight, sixteen, or thousands like supercomputers. They are fast in terms of clock rate. They are able to do instructions all over the places, like memory, arithmetic, logic, control flow operations.
+
 <h3>GPU</h3>
-	Graphics processing units usually contains tons of cores, easily hundreds or thousands. They are speciallized to process graphics, which is represented in matrices and vectors on computers. Thus, they are able to do these arithmetic calculations faster than CPUs. But they usually have lower clock rate than CPUs 
+	Graphics processing units usually contains tons of cores, easily hundreds or thousands. They are specialized to process graphics, which is represented in matrices and vectors on computers. Thus, they are able to do these arithmetic calculations faster than CPUs. But they usually have lower clock rate than CPUs
 
 <h3>GPGPU</h3>
-	General Purpose Graphics Processing Unit, to be accurate, General-Purpose Computing on Graphics Processing Units. 
-	Some people think, why not use GPU for scientific calculations. GPU has thousands cores for parallel computing and has the advantage of doing math. 
-	Then, there is CUDA, OpenCL, Stream SDK. 
-	In fact, this idea has used extensively in field of machine learning, scientific simulations, etc. 
-	In the world of deep learning, although there are frameworks capable of CPU-only mode, it is recommended to run on a GPU. The speed will increase dramatically, like at least 10 times. Most frameworks have support over CUDA, which is from NVIDIA. NVIDIA has been the leader of GPGPU industry. 
-	
+	General Purpose Graphics Processing Unit, to be accurate, General-Purpose Computing on Graphics Processing Units.
+	Some people think, why not use GPU for scientific calculations. GPU has thousands cores for parallel computing and has the advantage of doing math.
+	Then, there is CUDA, OpenCL, Stream SDK.
+	In fact, this idea has used extensively in field of machine learning, scientific simulations, etc.
+	In the world of deep learning, although there are frameworks capable of CPU-only mode, it is recommended to run on a GPU. The speed will increase dramatically, like at least 10 times. Most frameworks have support over CUDA, which is from NVIDIA. NVIDIA has been the leader of GPGPU industry.
+
 <h3>Conclusion</h3>
-	Basiclly, CPU has fewer cores and cannot do parallel computing like the way GPU can do, with thousands of cores. Sometimes GPUs are called using accelerators because of their speed in performing specific tasks. 
+	Basically, CPU has fewer cores and cannot do parallel computing like the way GPU can do, with thousands of cores. Sometimes GPUs are called using accelerators because of their speed in performing specific tasks.
