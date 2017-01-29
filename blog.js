@@ -116,17 +116,19 @@ function showPost(name) {
 	xhttp.onreadystatechange = function() {
 	    if (this.readyState == 4 && this.status == 200) {
 			if (this.responseText != null) {
-				var escapedContent = this.responseText.replace(/&/g, "&amp;")
-									.replace(/\n/g, "<br>")
-									.replace(/        /g, "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;")
-									.replace(/\t/g, "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;")
-									//.replace(/</g, "&lt;")
-									//.replace(/>/g, "&gt;")
-									//.replace(/"/g, "&quot;")
-									.replace(/'/g, "&apos;")
-									;
+				var escapedContent = marked(
+											this.responseText.replace(/&/g, "&amp;")
+															.replace(/\n/g, "<br>")
+															.replace(/        /g, "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;")
+															.replace(/\t/g, "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;")
+															//.replace(/</g, "&lt;")
+															//.replace(/>/g, "&gt;")
+															//.replace(/"/g, "&quot;")
+															.replace(/'/g, "&apos;")
+											);
 
-				$("#content>#" + name + ">.postExtract").html("<article class='postContent'>"+ marked(escapedContent) + "</article>");
+				$("#content>#" + name + ">.postExtract").html("<article class='postContent'>"+ escapedContent + "</article>");
+				$("code").html($("code").html().replace(/&lt;br&gt;/g, "\n")); // replace "<br>" in <code> with "\n", it is problematic when the code is html. 
 				//$("#shareLink").html("Link to this page (URL does not work): <br>http://blog.zhukaihan.com/index.html#" + name + "<br>");
 		    } else {
 		        $("#content>#" + name + ">.postExtract").html("<p>No Such Article.</p>");
