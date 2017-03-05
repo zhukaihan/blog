@@ -1,3 +1,5 @@
 # blog
 
-At blog.zhukaihan.com/index.html#2016-12-03_First-Post
+blog.zhukaihan.com is hosted on Github. 
+It is a client-based dynamic web page. 
+It contains things I would like to and necessary to share. 
