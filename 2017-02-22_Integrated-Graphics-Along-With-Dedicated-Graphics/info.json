@@ -1,6 +1,0 @@
-{
-	"title": "Integrated-Graphics-Along-With-Dedicated-Graphics",
-	"timestamp": "2017-02-22",
-	"extract": "Why we would use integrated graphics if we have a GPU and a single monitor. That is because when it comes to using GPU for deep learning, using GPU for graphics will lag, like hell. ",
-	"tags": ["Deep Learning", "GPU"]
-}

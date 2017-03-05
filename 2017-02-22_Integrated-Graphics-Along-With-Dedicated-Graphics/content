@@ -1,9 +1,0 @@
-Finally, finally, I got integrated graphics (iGP) to work with GPU.
-The story begins in October, 2016.
-I of course set up my desktop and plugged monitor onto GPU. However, here is where the issue starts, as I train a network with GPU, the screen lags, which must be the GPU's problem.
-Well, then I wish to buy another cheap-ish GPU. But my CPU only supports 16 PCIe lanes, i5 Skylake. Thus, if I use two GPUs, the motherboard will deliver 8 PCIe lanes to each GPU, where both GPU will run on PCIe 3.0 x8 instead of x16. It is no issue if the GPU is used for gaming, but for deep learning, it could be a bottleneck.
-I turned to the integrated graphics the CPU provides.
-
-Here's the catch for turning on the integrated graphics:
- - If you do not see options involving integrated graphics in BIOS, remove the GPU from the computer and plug the video cable to the motherboard.
- - Afterwards, you should be able to install driver in Windows and somehow, at least for me, it shows the option of iGP in BIOS even when the video cable is connected to an installed GPU.
